@@ -39,25 +39,30 @@ Airplane.prototype.land = function () {
         + It should return a string with `name` and `age`. Example: "Mary, 50"
 */
 
+// Initializing Person Object With Properties
+
 function Person(name, age) {
     this.name = name,
     this.age = age,
     this.stomach = []
     }
 
+//Setting Person Methods On The Prototype
 
 Person.prototype.eat = function(food){
+  // If stomach has less than 10 items, food is eaten, or pushed to the stomach.
   if(this.stomach.length <= 9){
     this.stomach.push(food);
   }
 }
-
+// Person is given the ability to get rid of the waste that is left over from the stomach, by it being able to be 'popped' out.
 Person.prototype.poop = function(){
   for(let i = this.stomach.length; i > 0; i--){
     this.stomach.pop();
   }
 }
 
+// Person is able to state its name and age.
 Person.prototype.toString = function(){
   return `${this.name}, ${this.age}`;
 }
@@ -75,6 +80,7 @@ Person.prototype.toString = function(){
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
+// Initializing Car with its properties.
 function Car(model, milesPerGallon) {
   this.model = model,
   this.milesPerGallon = milesPerGallon,
@@ -82,6 +88,9 @@ function Car(model, milesPerGallon) {
   this.odometer = 0
 }
 
+// Implementing methods inside of the Car's prototype.
+
+//  Passing the variable gallons, car is able to be filled by this method.
 Car.prototype.fill = function(gallons){
   this.tank += gallons;
 }
@@ -115,12 +124,17 @@ Car.prototype.drive = function(distance){
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
+
+// Initialized Baby as a subclass to Person with its own property as well.
 function Baby(name, age, favoriteToy) {
   Person.call(this, name, age),
+  // Baby now has a favorite toy.
   this.favoriteToy = favoriteToy
 }
 
+// Baby has all of the methods of a Person.
 Baby.prototype = Object.create(Person.prototype);
+//  Baby is now able to share that he/she is playing with their favorite toy.
 Baby.prototype.play = function(){
   return `Playing with ${this.favoriteToy}`;
 }
@@ -129,10 +143,10 @@ Baby.prototype.play = function(){
   TASK 4
 
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
+  1.  Window/Global Object Binding - Whenever the 'this' keyword is used in the global scope, it is referring back to the window object.
+  2.  Implicit Binding - Anything before the dot, is 'this'.
+  3.  New Binding - Whenever a 'new' Object is created from an Object that is declared before, the 'this' keyword refers to the instance of the object you created. 
+  4.  Explicit Binding - Whenever we use the methods '.call()' and '.apply()', 'this' would be referring to the item that is being called in the parentheses.
 */
 
 
